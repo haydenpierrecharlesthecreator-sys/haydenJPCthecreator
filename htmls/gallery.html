@@ -1,0 +1,149 @@
+<style>
+/* Base tooltip */
+.floating-desc {
+  position: absolute;
+  background: rgb(255, 215, 215);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 14px;
+  box-shadow: 0 0 20px rgb(153, 163, 255);
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(1);
+  transform-origin: top left;
+  will-change: transform, opacity, font-size, padding;
+
+  /* Rainbow text effect */
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowShift 1 s linear infinite;
+}
+
+/* Rainbow animation */
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Show / hide states driven by classes */
+.floating-desc.show {
+  animation: enlargeDesc 0.3s ease forwards, rainbowShift 5s linear infinite;
+}
+
+.floating-desc.hide {
+  animation: shrinkDesc 0.2s ease forwards;
+}
+
+/* Keyframes for tooltip size/rotation */
+@keyframes enlargeDesc {
+  from {
+    font-size: 0.1px;
+    padding: 6px 10px;
+    opacity: 0;
+    transform: scale(0.00001) rotate(0deg);
+  }
+  to {
+    font-size: 30px;
+    padding: 20px 25px;
+    opacity: 1;
+    transform: scale(1.1) rotate(360deg);
+  }
+}
+
+@keyframes shrinkDesc {
+  from {
+    font-size: 30px;
+    padding: 20px 25px;
+    opacity: 1;
+    transform: scale(1.1) rotate(0deg);
+  }
+  to {
+    font-size: 0.1px;
+    padding: 6px 10px;
+    opacity: 0;
+    transform: scale(0.01) rotate(360deg);
+  }
+}
+
+
+/* Page layout styles */
+body {
+  text-align: center;
+}
+
+#rt-rp-bigger {
+  font-size: 10%;
+}
+
+.boxy {
+  border: 5px solid white;
+  padding: 10px;
+  display: inline-block;
+}
+</style>
+
+<title>G4ll3rY P@g3</title>
+
+<body style="text-align: center;">
+  <div id="boxy">
+
+  <h1>Gallery Page</h1>
+  <p>Hover over the image to see the artist behind it!</p>
+
+  <div class="gallery">
+    <ruby>
+      <img src="h dude swag man.png" width="15%" alt="BY-HaydenJPC">
+      <span id="rt-rp-bigger">
+      </span>
+    </ruby>
+  </div>
+</body>
+
+</div>
+
+<div id="floatingDesc" class="floating-desc"></div>
+
+<script>
+const galleryImages = document.querySelectorAll(".gallery img");
+const floatingDesc = document.getElementById("floatingDesc");
+
+// Cleanly reset after hide animation completes
+floatingDesc.addEventListener("animationend", (e) => {
+  if (floatingDesc.classList.contains("hide")) {
+    floatingDesc.classList.remove("hide");
+    // Keep it non-displayed via opacity (no inline display needed)
+  }1
+});1
+
+galleryImages.forEach(img => {
+  img.addEventListener("mousemove", (e) => {
+    floatingDesc.textContent = img.alt;
+    floatingDesc.style.left = e.pageX + 15 + "px";
+    floatingDesc.style.top = e.pageY + 15 + "px";
+
+    // Ensure show state
+    floatingDesc.classList.remove("hide");
+    floatingDesc.classList.add("show");
+  });
+
+  img.addEventListener("mouseleave", () => {
+    floatingDesc.classList.remove("show");
+    floatingDesc.classList.add("hide");  // triggers shrink animation
+  });
+});
+
+</script>
