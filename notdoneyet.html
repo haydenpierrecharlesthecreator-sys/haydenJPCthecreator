@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <button style="position: fixed; top: 10px; left: 10px; z-index: 2000; background-color: rgb(140, 238, 255);" onclick="window.location.href='home.html';">H0me P@ge...</button>
+
+  <title>Page Not Ready, dude...</title>
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+   
+<a href="lets take a look inside haydens brain cells real quick yknow it cant be that bad.html" id="hoverTarget">
+  <img src="no no the website being worked on rn.png" STYLE="animation: translate 1ms linear infinite;" width="15%">
+</a>
+
+<!-- Tooltip image -->
+<img src="MAN IM WORKING ON IT.png" width="200%" class="tooltip-img" id="tooltipImg"></img>
+
+  <h1>Page Not... Ready</h1>
+
+  <style>
+@keyframes translate {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+</style>
+  <p>This- <h1>P4GE</h1> ...is still under construction. Please check back later!<br> <strong>"HEY! BEN! GET THE CONCERTE!"</strong> </p>
+  <p id="randomDisplay"></p>
+
+
+<script>
+  // Generate a random number between 0 and 49
+  let randomNum = Math.floor(Math.random() * 170);
+
+  // Apply it to the body's margin-top
+  document.body.style.marginTop = randomNum + "px";
+
+  // Show the number on the page
+  document.getElementById("randomDisplay").innerHTML = "(⓿_⓿) random movement (⓿_⓿) :<br><h1>" + randomNum;
+</script>
+
+<style>
+  .hover-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hover-container .tooltip-img {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 150px;
+    border: 2px solid white;
+    box-shadow: 0 0 10px white;
+    background-color: black;
+    z-index: 10;
+  }
+
+  .hover-container:hover .tooltip-img {
+    display: block;
+  }
+</style>
+
+<style>
+  .tooltip-img {
+    position: absolute;
+    display: none;
+    width: 150px;
+    pointer-events: none; /* so it doesn't block clicks */
+    border: 2px solid white;
+    box-shadow: 0 0 10px white;
+    background: black;
+  }
+</style>
+
+
+<script>
+  const hoverTarget = document.getElementById("hoverTarget");
+  const tooltipImg = document.getElementById("tooltipImg");
+
+  hoverTarget.addEventListener("mousemove", (e) => {
+    tooltipImg.style.display = "block";
+    tooltipImg.style.left = e.pageX + 20 + "px"; // offset from cursor
+    tooltipImg.style.top = e.pageY + 25  + "px";
+  });
+
+  hoverTarget.addEventListener("mouseleave", () => {
+    tooltipImg.style.display = "none";
+  });
+</script>
+
+
+</body>
+</html>

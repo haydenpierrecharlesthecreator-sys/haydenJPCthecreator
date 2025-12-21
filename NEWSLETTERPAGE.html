@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter</title>
+<link rel="icon" type="image/png" href="H TEAM FAVICON.png">
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .date-box { background: #bdbdbd; border-color: #bdbdbd; border: 12px solid #bdbdbd; padding: 5px; border-radius: 20px; width: fit-content; margin: 0 auto; }
+    .indent { text-indent: 50px; } /* class for indentation */
+</style>
+
+<style>
+  .centered-box {
+    text-align: center;
+  }
+
+    .lefty-box {
+    text-align: left;
+  }
+
+     .CURVED-BOX {
+    text-align: left;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+ body { background: linear-gradient(to top, rgb(255, 0, 0), rgb(255, 255, 255), rgb(0, 94, 255)); }
+
+  .boxu { background: 
+    radial-gradient(circle,   
+    rgb(0, 238, 255), 
+    rgb(0, 238, 255), 
+    rgb(255, 0, 0), 
+    rgb(179, 0, 255),
+    rgb(189, 189, 189), 
+    rgb(189, 89, 189), 
+    rgb(189, 189, 189),
+    rgb(189, 189, 189),
+    rgb(189, 189, 189)); }
+
+
+</style>
+
+</head>
+<body>
+<br> <br>
+  <div class="centered-box" >
+    <button style="background-color: rgb(140, 238, 255); width: auto; font-size: large;"
+    onclick="window.location.href='home.html';">H0me P@ge</button>
+</div>
+
+
+
+<div class="centered-box" >
+<h1 class="centered-box" 
+    style="font-size: 100px; text-shadow: 6px 6px 4px rgba(0, 0, 0, 0.5);">
+  <strong>
+    <span 
+    style="color: red; text-shadow: 6px 6px 4px 
+    rgba(0, 0, 0, 0.5);">H</span>AYDEN TEA<span 
+    style="color: purple; text-shadow: 6px 6px 4px 
+    rgba(0, 0, 0, 0.5);">M</span>
+     </strong>
+  <br> 
+  <em>N e w s l e t t e r</em>
+</h1>
+
+</div>
+
+
+
+
+<div class="centered-box">
+<div class="date-box">
+<div class="boxu">
+  <br> <br> <br>
+    <img src="LAST UP8 W@S.png" alt="Last Update Was..." width="60%" height="30%" style="border-radius:50px;">
+    <h1><span id="lastUpdated"></span></h1>
+    <br>
+  </div>
+</div>
+</div>
+<br> <br> <br> <br>
+<hr>
+<div class="centered-box">
+
+<img class="CURVED-BOX" src="DOWN BRACKET.png" width="5%" style="display:inline-flex;">
+
+<div class="lefty-box" 
+style="border: 5px solid; 
+border-color: rgb(255, 255, 0); 
+width: fit-content; 
+margin: 20px auto; 
+padding: 10px;">
+    
+    
+
+    <P>
+      <strong>TESTING TEXT FUNCTIONALITY</strong>
+      <br><br>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <br> Consequatur harum ullam incidunt esse provident sunt,
+       ipsam eum cum hic molestias?
+       <br>Amet illum nulla aspernatur 
+        asperiores labore debitis eius. 
+        Reprehenderit, exercitationem.</P>
+
+        <p>
+ <strong>TESTING IMAGE/yummy fanart FUNCTIONALITY</strong>
+    
+      <img src="mrs M and mr H.png" alt="maya this is just yum" width="75%">
+      <br><br><br>
+      <img src="jobless.png" alt="AAAA" width="75%">
+        </p>
+  
+  </div>
+
+<img class="CURVED-BOX" src="UP BRACKET.png" width="5%" style="display:inline-flex;">
+
+
+</div>
+<hr style="color: blue;">
+<br>
+
+
+  <div style="border: 5px solid; border-color: lightseagreen; width: fit-content; margin: 20px auto; padding: 10px; 
+  background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(0, 162, 255));">
+    <div class="centered-box" style="text-align: center; margin-top: 10px;">
+      <button id="haydenBtn" style="background: lightcoral;" onclick="toggleHayden()"> &lt;DESC&gt; </button>
+      <br><br>
+      <div id="haydenBox">
+        <div class="centered-box">
+<p>Welcome to the latest edition of our...</p>
+<img src="NEWSLETTER ICON.png" width="20%" style="display: inline-block;">
+<p>
+  In this newsletter, 
+  we cover the latest updates 
+  and news about the Hayden Team 
+  and our projects. 
+  Stay tuned for exciting announcements 
+  and insights! 
+  <br>
+  <br>
+  maya pls give me apples</p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script>
+    // Manually update this date when you release a new newsletter
+    const lastReleaseDate = new Date("2025-11-16T21:52:00"); // YYYY-MM-DDTHH:MM:SS
+
+    // Format date for display
+    document.getElementById("lastUpdated").textContent =
+        lastReleaseDate.toLocaleString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+</script>
+
+ <script>
+    function toggleHayden() {
+      const box = document.getElementById('haydenBox');
+      const btn = document.getElementById('haydenBtn');
+
+      if (box.style.display === 'none') {
+        box.style.display = 'inline-block';
+        box.classList.add('checkerboard-border');
+        btn.innerHTML = '&gt;DESC&lt;';
+      } else {
+        box.style.display = 'none';
+        box.classList.remove('checkerboard-border');
+        btn.innerHTML = '&lt;DESC&gt;';
+      }
+    }
+  </script>
+
+  
+</body>
+
+
+<div style="text-align: center;">
+<BR>
+<iframe src="AD.html" width="950" style="height: auto;" scrolling="no"></iframe>
+</div>
+</html>

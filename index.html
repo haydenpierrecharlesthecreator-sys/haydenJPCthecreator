@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/png" href="H TEAM FAVICON.png">
+
+
+  <style>
+  
+    /* Centered container that preserves a 4:3 aspect ratio and scales to fit the viewport */
+    html, body { height: 100%; margin: 0; }
+    .aspect-4-3 {
+      aspect-ratio: 4 / 3;
+      width: min(calc(100vh * 4 / 3), 100vw);
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+  <title>Hayden Team TITLE</title>
+  
+</head>
+<body>
+  <div class="aspect-4-3">
+    <style>
+      body {
+        background-color: rgb(0, 0, 0);
+      }
+      /* center everything inside the aspect container */
+      .aspect-4-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+    </style>
+
+    <h1 style="color: rgb(255, 0, 0); font-family: 'Comic Sans MS' , 'Comic Sans', cursive;">Welcome to... (hayden team beta website)</h1>
+
+    <div>
+      <style>
+        @keyframes heartbeat {
+          0% { transform: scale(1); }
+          48% { transform: scale(1.05); }
+          49% { transform: rotate(-5deg); }
+          50% { transform: scale(1); }
+          51% { transform: scale(1.05); }
+          74% { transform: rotate(5deg); }
+          75% { transform: scale(1.05); }
+          99% { transform: rotate(-5deg); }
+          100% { transform: scale(1); }
+        }
+      </style>
+      <div style="animation: heartbeat 1.5s infinite;">
+        <img id="main-logo"
+         src="Hayden Team Logo Glow RED.png" alt="Hayden Team Logo"
+         style="max-width: 50%; height: auto; transition: all 0.80s ease-in-out; cursor: pointer;"
+         onclick="this.style.pointerEvents='none'; this.parentElement.style.animation='none'; this.src='logo.gif'; const w = document.querySelector('.walking-h img'); if(w) { w.style.opacity='0'; } setTimeout(()=>{ document.body.style.backgroundColor='red'; this.style.maxWidth='100%'; },1250); setTimeout(()=>{ window.location.href='home.html'; },2000); this.parentElement.style.pointerEvents='none';" />
+      </div>
+    </div>
+
+    <div style="position: fixed; bottom: 45px; width: 75%; text-align: center; color: rgb(255, 0, 0); font-family: Arial, sans-serif;">
+      <style>
+        @keyframes blink {
+          0% { opacity: 1; }
+          25% { opacity: .25; }
+          50% { opacity: 1; }
+          95% { opacity: 0.25; }
+          100% { opacity: 1; }
+        }
+      </style>
+      <p style="animation: blink 1s infinite;">CLICK THE LOGO TO ENTER THE HOME PAGE BRO!</p>
+   
+    </div>
+
+<a href="notdoneyet.html"> 
+<img style="position: fixed; bottom: 45%; left: 70%; width: 10%; height: auto;" src="MAYA DREAM WEBSITE ICON.png">
+<p style="position: fixed; bottom: 40%; left: 70%; height: auto; color: seashell;">the maya dream website is not done guys srry</p>
+</a>
+
+
+
+</body>
+</html>

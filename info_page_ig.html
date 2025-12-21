@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Member Info Pages</title>
+  <button style="position: fixed; top: 10px; left: 10px; z-index: 2000; background-color: rgb(140, 238, 255);" onclick="window.location.href='home.html';">H0me P@ge...</button>
+  <style>
+    .rotate-x { 
+      color: lightseagreen;
+      display: inline-block;
+      animation: spinX 30s ease infinite;
+      transform-style: preserve-3d;
+      perspective: 800px;
+    }
+
+    @keyframes spinX {
+      0%   { transform: rotateX(10deg) rotateY(-360deg); }
+      25%  { transform: rotateX(-20deg) rotateY(360deg); }
+      50%  { transform: rotateX(10deg) rotateY(-360deg); }
+      75%  { transform: rotateX(-20deg) rotateY(360deg); }
+      100% { transform: rotateX(10deg) rotateY(-360deg); }
+    }
+
+    .checkerboard-border {
+      border: 10px solid;
+      border-image: repeating-linear-gradient(
+        45deg,
+        black 0 10px,
+        rgb(255, 124, 124) 10px 20px
+      ) 10;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    #haydenBox, #oliverBox {
+      display: none;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .centered-box {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="centered-box">
+    <br>
+    <h1 class="rotate-x" style="font-size: 300%; font-family: fantasy;">MEMBER INFO</h1>
+    <p style="font-family: 'Courier New', Courier, monospace;">
+      <strong>
+      this guys are likelikelike cool as heck check them out
+     
+      <br>
+      some of these members are really cool and also very much sane guys trust</p>
+       </strong>
+  </div>
+
+  <!-- Hayden Section -->
+  <div style="border: 5px solid; width: fit-content; margin: 20px auto; padding: 10px; background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(0, 162, 255));">
+    <div class="centered-box" style="text-align: left; margin-top: 10px;">
+      <button id="haydenBtn" style="background: lightcoral;" onclick="toggleHayden()"> &lt; HAYDEN JPC &gt; </button>
+      <br><br>
+      <div id="haydenBox">
+        <p>Hayden JPC. I am the main reason why this exists, the website and stuff. I'm the only animatior, artist, director, coder of HAYDEN TEAM. Bfdi bfdi bfdi bdfi OSC OSC OSC OBJECT SHOW COMMUNITY! HELLLL YEAAAHHHHH BAABIESSSSSSSS!!!!! ive taken 11 and a half of nothing but sugar, i think im going insane </p>
+        <img src="h dude swag man.png" width="35%" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Oliver Section -->
+  <div style="border: 5px solid; width: fit-content; margin: 20px auto; padding: 10px; background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(0, 162, 255));">
+    <div class="centered-box" style="text-align: left; margin-top: 10px;">
+      <button id="oliverBtn" style="background: lightcoral;" onclick="toggleOliver()"> &lt; OLIVER C &gt; </button>
+      <br><br>
+      <div id="oliverBox">
+        <p>Oliver is silly. Olive-Hell Yeah.</p>
+        <img src="oliver dog.JPG" width="15%" />
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <br><br><br>
+  <script src="ruffle.js"></script>
+  <div class="centered-box"><p>MUSIC PLAYER</p></div>
+  <div style="border: 10px solid rgb(166, 0, 141); width: 400px; margin: 0 auto;">
+    <embed src="Music Player FLA.swf" width="400"/>
+  </div> -->
+
+  <!-- Toggle Scripts -->
+  <script>
+    function toggleHayden() {
+      const box = document.getElementById('haydenBox');
+      const btn = document.getElementById('haydenBtn');
+
+      if (box.style.display === 'none') {
+        box.style.display = 'inline-block';
+        box.classList.add('checkerboard-border');
+        btn.innerHTML = '&gt; HAYDEN JPC &lt;';
+      } else {
+        box.style.display = 'none';
+        box.classList.remove('checkerboard-border');
+        btn.innerHTML = '&lt; HAYDEN JPC &gt;';
+      }
+    }
+
+    function toggleOliver() {
+      const box = document.getElementById('oliverBox');
+      const btn = document.getElementById('oliverBtn');
+
+      if (box.style.display === 'none') {
+        box.style.display = 'inline-block';
+        box.classList.add('checkerboard-border');
+        btn.innerHTML = '&gt; OLIVER C &lt;';
+      } else {
+        box.style.display = 'none';
+        box.classList.remove('checkerboard-border');
+        btn.innerHTML = '&lt; OLIVER C &gt;';
+      }
+    }
+  </script>
+
+
+
+
+
+<style>
+  #musicModal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgb(255,255,255), rgb(0,162,255));
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; overflow: hidden;
+  }
+  #freakyFace {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.04; pointer-events: none;
+  }
+  #musicBox {
+    position: relative; background: rgba(255,255,255,0.9);
+    padding: 30px; border-radius: 15px;
+    border: 4px solid rgb(0,162,255);
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    text-align: center; font-family: 'Poppins', Arial, sans-serif;
+    z-index: 1;
+  }
+  #musicBox h2 { color: rgb(0, 80, 160); margin-bottom: 20px; }
+  #musicBox button {
+    margin: 10px; padding: 12px 24px; font-size: large;
+    cursor: pointer; border: none; border-radius: 8px;
+    background: linear-gradient(to bottom, rgb(140,238,255), rgb(0,162,255));
+    color: white; box-shadow: 0 0 10px rgb(255, 0, 0);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  #musicBox button:hover { transform: scale(1.05); box-shadow: 0 0 20px rgb(0,162,255); }
+  body.modal-open { overflow: hidden; }
+
+  .audio-box {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.95);
+    border: 2px solid rgb(0,162,255);
+    border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    z-index: 5000; text-align: center; width: 350px;
+    user-select: none;
+  }
+  .audio-header {
+    background: linear-gradient(to bottom, #e6f2ff, #66a3ff);
+    color: #003366; font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: bold; padding: 8px;
+    border-bottom: 1px solid #004080;
+    border-radius: 8px 8px 0 0;
+    cursor: move; text-align: left; position: relative;
+  }
+  .close-btn {
+    position: absolute; right: 8px; top: 4px;
+    background: linear-gradient(to bottom, #ff9999, #cc0000);
+    color: white; border: 1px solid #800000;
+    border-radius: 4px; padding: 2px 6px; font-size: 14px;
+    cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .close-btn:hover { background: linear-gradient(to bottom, #ffcccc, #990000); }
+
+  .audio-item {
+    margin: 10px 0; padding: 8px;
+    border: 1px solid #ccc; border-radius: 6px;
+    background: #f9f9f9;
+  }
+  .audio-item:hover { background: #e6f2ff; }
+  .audio-label {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-bottom: 4px; font-weight: bold;
+  }
+  .audio-element { width: 100%; }
+</style>
+
+<!-- Hidden audio player box -->
+ <button style="position: fixed; top: 10px; right: 10px; z-index: 2000; background-color: rgb(0, 255, 132);" onclick="startMusic()">provide background music twin?</button>
+<div id="audioPlayerBox" class="audio-box" style="display:none;">
+  <div id="audioHeader" class="audio-header">
+    HaydenTeamAudioPlayer.<span style="color: #ff0000;">exe</span>
+    <span id="closeAudio" class="close-btn">✖</span>
+  </div>
+  <div id="audioList"></div>
+</div>
+
+<script>
+  // Build audio tracks
+  const tracks = [
+    { src: "Lenhub.wav", label: "L3NHUB!!!" }
+  ];
+  const audioList = document.getElementById("audioList");
+  tracks.forEach(track => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "audio-item";
+    const label = document.createElement("div");
+    label.textContent = track.label;
+    label.className = "audio-label";
+    const audio = document.createElement("audio");
+    audio.src = track.src;
+    audio.controls = true;
+    audio.loop = true;
+    audio.controlsList = "nodownload";
+    audio.className = "audio-element";
+    wrapper.appendChild(label);
+    wrapper.appendChild(audio);
+    audioList.appendChild(wrapper);
+  });
+
+  // Close button logic
+  const closeBtn = document.getElementById("closeAudio");
+  closeBtn.addEventListener("click", () => {
+    const audioBox = document.getElementById("audioPlayerBox");
+    audioBox.style.display = "none";
+    document.querySelectorAll("#audioList audio").forEach(a => a.pause());
+  });
+
+  // Dragging logic
+  const audioBox = document.getElementById("audioPlayerBox");
+  const header = document.getElementById("audioHeader");
+  let isDragging = false, offsetX, offsetY;
+  header.addEventListener("mousedown", e => {
+    if (e.target.id === "closeAudio") return;
+    isDragging = true;
+    const rect = audioBox.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    audioBox.style.transform = "none";
+    audioBox.style.left = rect.left + "px";
+    audioBox.style.top = rect.top + "px";
+  });
+  document.addEventListener("mousemove", e => {
+    if (isDragging) {
+      audioBox.style.left = (e.clientX - offsetX) + "px";
+      audioBox.style.top = (e.clientY - offsetY) + "px";
+    }
+  });
+  document.addEventListener("mouseup", () => { isDragging = false; });
+
+  // Modal logic
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("modal-open");
+  });
+  function startMusic() {
+    const bg = document.getElementById("bg-music");
+    const modal = document.getElementById("musicModal");
+    if (modal) modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+    audioBox.style.display = "block";
+    try {
+      bg.volume = 0.4;
+      bg.play().catch(err => console.warn("Background audio failed:", err));
+    } catch (err) { console.warn("Error starting background music:", err); }
+  }
+  function closeModal() {
+    const modal = document.getElementById("musicModal");
+    if (modal) modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+  }
+</script>
+
+<br>
+</body>
+</html>

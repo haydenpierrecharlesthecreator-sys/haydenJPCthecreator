@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dah Theater</title>
+    <!--  this is STILL the the letter band thing  -->
+  <style>
+    body {
+      background-color: rgb(0, 0, 0);
+      margin: 0;
+      overflow-y: auto;
+      color: rgb(130, 130, 130);
+      font-family: monospace;
+      text-align: center;
+    }
+
+    #loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 75px;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 2s ease;
+    }
+
+#video-container {
+  opacity: 0;
+  visibility: hidden;
+  position: relative;
+  margin: 100px auto;
+  border-radius: 10px;
+  animation: pulseGlow 3s infinite alternate;
+  transition: opacity 1s ease;
+  /* width and height will be set via JS */
+}
+
+#video-container.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+    #main-video {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
+
+    #hosted {margin-top: -10px;}
+
+    #fullscreenBtn {
+  background-color: navy;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: medium;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 10px blue;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+
+    .centered-box {
+      position: relative;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Blood-red glowing pulse aura */
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 20px 10px rgb(255, 255, 255); }
+      to   { box-shadow: 0 0 60px 30px rgb(235, 235, 235); }
+    }
+
+    /* Red slider styling */
+    /* Base styling for all sliders */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 150px;
+  height: 6px;
+  background: #222;
+  border-radius: 3px;
+  outline: none;
+}
+
+/* 🎬 Video time bar (seek) — BLUE */
+#seek::-webkit-slider-runnable-track {
+  height: 6px;
+  background: blue;
+  border-radius: 3px;
+}
+#seek::-moz-range-track {
+  height: 6px;
+  background: blue;
+  border-radius: 3px;
+}
+#seek::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  width: 14px;
+  height: 14px;
+  background: rgb(0, 255, 34);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4px;
+  box-shadow: 0 0 30px rgb(255, 255, 255);
+}
+#seek::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: rgb(0, 255, 42);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 8px blue;
+}
+
+/* 🔊 Volume slider — RED */
+#vol::-webkit-slider-runnable-track {
+  height: 6px;
+  background: red;
+  border-radius: 3px;
+}
+#vol::-moz-range-track {
+  height: 6px;
+  background: red;
+  border-radius: 3px;
+}
+#vol::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: red;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4px;
+  box-shadow: 0 0 8px red;
+  animation: thumbPulse 2s infinite alternate;
+}
+#vol::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: red;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 8px red;
+  animation: thumbPulse 2s infinite alternate;
+}
+
+
+    @keyframes thumbPulse {
+      from { box-shadow: 0 0 6px darkred; }
+      to   { box-shadow: 0 0 16px crimson; }
+    }
+
+    /* Loop toggle button styling */
+    #loopToggle {
+      background-color: darkred;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: medium;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 0 10px red;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    #loopToggle.active {
+      background-color: crimson;
+      box-shadow: 0 0 35px rgb(81, 255, 0);
+    }
+
+    /* Retry button styling */
+    #retryBtn {
+      display: none;
+      margin-top: 15px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: medium;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 0 12px red;
+    }
+  </style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+  <!-- Top logo/link -->
+  <div style="margin-top:20px; text-align:center;">
+    <a href="opening page.html">
+      <img src="H TEAM FAIVCON.png" alt="Hayden Team Logo" style="width:80px; height:auto;">
+    </a>
+    <div style="color:white; font-family:monospace; margin-top:8px;">
+      <p style="font-size: 20px" id=hosted >Hosted on The Hayden Team Website</p>
+    </div>
+  </div>
+
+  <div id="loading">Loading...</div>
+  <button id="retryBtn">Retry Video</button>
+
+  <div id="video-container">
+    <video id="main-video" playsinline preload="metadata"></video>
+    
+    <div id="controls">
+      <button id="play">Play</button>
+      <button id="pause">Pause</button>
+      <input id="seek" type="range" min="0" max="100" value="0">
+      <input id="vol" type="range" min="0" max="1" step="0.05" value="1">
+      <button id="loopToggle">Loop Off</button>
+      <button id="fullscreenBtn">Fullscreen</button>
+    </div>
+  </div>
+
+
+
+  <!-- Centered button -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    const loading = document.getElementById('loading');
+    const container = document.getElementById('video-container');
+    const video = document.getElementById('main-video');
+    const playBtn = document.getElementById('play');
+    const pauseBtn = document.getElementById('pause');
+    const seek = document.getElementById('seek');
+    const vol = document.getElementById('vol');
+    const loopBtn = document.getElementById('loopToggle');
+    const retryBtn = document.getElementById('retryBtn');
+
+    video.controls = false;
+
+ function typewriter(el, text, speed=25) {
+  el.innerHTML = "";   // use innerHTML
+  let i = 0;
+  const interval = setInterval(() => {
+    el.innerHTML += text[i];
+    i++;
+    if (i === text.length) clearInterval(interval);
+  }, speed);
+}
+
+// Now you can safely pass HTML markup:
+typewriter(loading, "Loading ❁VIDEO❁...");
+
+
+
+
+function revealVideo() {
+  loading.style.opacity = 0;
+  setTimeout(() => {
+    loading.style.display = "none";
+    container.classList.add("show"); // fade in instead of display:block
+    const revealSound = new Audio("The End Of The Latin BTNPRESSSOUND.wav");
+    revealSound.play().catch(err => console.warn("Sound blocked:", err));
+  }, 2000);
+}
+
+
+    // Direct file source
+    video.src = "video/TWOTRUTHSONELIE DEMO (1).mp4";
+
+    video.addEventListener("canplay", revealVideo);
+
+    // Custom controls
+    playBtn.onclick = () => video.play();
+    pauseBtn.onclick = () => video.pause();
+    vol.oninput = () => video.volume = parseFloat(vol.value);
+
+    video.addEventListener('loadedmetadata', () => {
+      seek.max = Math.floor(video.duration);
+    });
+    video.addEventListener('timeupdate', () => {
+      seek.value = Math.floor(video.currentTime);
+    });
+    seek.oninput = () => {
+      video.currentTime = parseFloat(seek.value);
+    };
+
+    // Loop toggle
+    let isLooping = false;
+    function toggleLoop() {
+      isLooping = !isLooping;
+      video.loop = isLooping;
+      loopBtn.textContent = isLooping ? "Loop On" : "Loop Off";
+      loopBtn.classList.toggle("active", isLooping);
+    }
+    loopBtn.onclick = toggleLoop;
+
+    // Retry logic
+    retryBtn.onclick = () => {
+      retryBtn.style.display = "none";
+      loading.textContent = "Loading...";
+      loading.style.display = "block";
+      video.src = "TWOTRUTHSONELIE DEMO (1).mp4";
+    };
+
+    // Error listener
+    video.addEventListener("error", e => {
+      console.error("Video error:", e);
+      loading.textContent = "Error loading video file";
+      retryBtn.style.display = "inline-block";
+    });
+
+    // Anti-scrape UX
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      const blocked = ['s', 'u'];
+      if ((e.ctrlKey || e.metaKey) && blocked.includes(e.key.toLowerCase())) e.preventDefault();
+    });
+
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    container.requestFullscreen().catch(err => {
+      console.error(`Error attempting fullscreen: ${err.message}`);
+    });
+    fullscreenBtn.classList.add("active");
+    fullscreenBtn.textContent = "UClickDis-Fullscreen";
+  } else {
+    document.exitFullscreen();
+    fullscreenBtn.classList.remove("active");
+    fullscreenBtn.textContent = "Fullscreen";
+  }
+}
+
+fullscreenBtn.onclick = toggleFullscreen;
+
+
+
+
+
+// Variables for video size
+let videoWidth = 600;
+let videoHeight = 300;
+
+// Apply initial size
+container.style.width = videoWidth + "px";
+container.style.height = videoHeight + "px";
+
+// Optional: function to resize dynamically
+function resizeVideo(newWidth, newHeight) {
+  videoWidth = newWidth;
+  videoHeight = newHeight;
+  container.style.width = videoWidth + "px";
+  container.style.height = videoHeight + "px";
+}
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+<div style="height: 40px;"></div>
+<img src="Chairs.png" width="100%">
+<div style="height: 200px;"></div>
+  <div class="centered-box">
+    <button style="background-color: rgb(140, 238, 255); width: auto; font-size: x-large;" 
+            onclick="window.location.href='home.html';">
+      H0me P@ge
+    </button>
+  </div>
+</body>
+</html>
